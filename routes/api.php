@@ -22,4 +22,9 @@ Route::get("/getDistrito/{provincia_id}", [UbicacionController::class, "getDistr
 
 
 //Docentes 
-Route::post("/docente/create", [DocenteController::class, "createDocente"])->name("docente.createDocente");
+Route::prefix('docente')->controller(DocenteController::class)->group(function () {
+    Route::post("/create", "createDocente")->name("docente.create");
+    Route::get("/{id}", "getDocente")->name("docente.get");
+    Route::get("/", "getDocentes")->name("docente.getAll");
+    Route::delete("/{id}", "deleteDocente")->name("docente.delete");
+});

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("año")->nullable();
             $table->tinyInteger("tipo")->comment("0 => Asesor, 1 => Jurado");
 
-            $table->foreignId("docente_id")->nullable()->constrained("docentes")->nullOnDelete();
+            $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');
 
             $table->timestamps();
         });

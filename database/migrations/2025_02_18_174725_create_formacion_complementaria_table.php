@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string("especialidad")->nullable();
             $table->string("institucion")->nullable();
 
-            $table->foreignId("docente_id")->nullable()->constrained("docentes")->nullOnDelete();
+            $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');
+
 
             $table->timestamps();
         });

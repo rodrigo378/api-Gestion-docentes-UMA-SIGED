@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('titulos_profesionales', function (Blueprint $table) {
+        Schema::create('modulos', function (Blueprint $table) {
             $table->id();
-
-            $table->string("titulo")->nullable();
-            $table->string("universidad")->nullable();
-            $table->string("especialidad")->nullable();
-
-            $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');
-
             $table->timestamps();
         });
     }
@@ -29,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('titulos_profesionales');
+        Schema::dropIfExists('modulos');
     }
 };

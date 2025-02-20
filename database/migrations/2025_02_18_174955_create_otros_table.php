@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("elearning")->nullable();
             $table->string("nivel_elearning")->comment("Básico, Intermedio, Avanzado")->nullable();
 
-            $table->foreignId("docente_id")->nullable()->constrained("docentes")->nullOnDelete();
+            $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');;
 
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("entidad_financiadora")->nullable();
             $table->string("año")->nullable();
 
-            $table->foreignId("docente_id")->nullable()->constrained("docentes")->nullOnDelete();
+            $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');
 
             $table->timestamps();
         });

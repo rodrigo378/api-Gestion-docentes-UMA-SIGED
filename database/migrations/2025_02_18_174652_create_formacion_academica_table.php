@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("pais")->nullable();
             $table->string("resolucion_sunedu")->comment("Número de resolución en caso de revalidación")->nullable();
 
-            $table->foreignId("docente_id")->nullable()->constrained("docentes")->nullOnDelete();
+            $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -16,7 +16,6 @@ use App\Models\docente\Otro;
 use App\Models\docente\ProyectoInvestigacion;
 use App\Models\docente\TituloProfesional;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class DocenteController extends Controller
@@ -325,5 +324,62 @@ class DocenteController extends Controller
 
 
         return response()->json(["docente" => $newDocente], 201);
+    }
+
+    public function getDocente(Request $request)
+    {
+        $id = $request->id;
+
+        $docente = Docente::with([
+            'contactoEmergencia',
+            'domicilio',
+            'formacionAcademica',
+            'titulosProfesionales',
+            'formacionComplementaria',
+            'experienciaDocente',
+            'articulosCientificos',
+            'libros',
+            'proyectosInvestigacion',
+            'asesoriasJurado',
+            'juradosTesis',
+            'otros'
+        ])->where("id", $id)->first();
+
+        if (!$docente) {
+            return response()->json([
+                "message" => "Docente no encontrado",
+                "status" => 404
+            ], 404);
+        }
+
+        return response()->json(["docente" => $docente], 200);
+    }
+
+    public function getDocentes()
+    {
+        $docentes = Docente::all();
+
+        return response()->json(["docentes" => $docentes], 200);
+    }
+
+    public function deleteDocente(Request $request)
+    {
+        $id = $request->id;
+
+        $docente = Docente::find($id);
+
+        if (!$docente) {
+            return response()->json([
+                "message" => "Docente no encontrado",
+                "status" => 404
+            ], 404);
+        }
+
+        $docente->delete();
+
+        return response()->json([
+            "message" => "Docente eliminado correctamente",
+            "status" => 200
+        ], 200);
     }
 }

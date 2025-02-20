@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("año")->nullable();
             $table->string("enlace")->nullable();
 
-            $table->foreignId("docente_id")->nullable()->constrained("docentes")->nullOnDelete();
+            $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');
 
             $table->timestamps();
         });
