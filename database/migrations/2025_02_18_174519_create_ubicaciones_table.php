@@ -11,9 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ubicaciones', function (Blueprint $table) {
+        Schema::create('departamentos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombre', 100);
+        });
+
+        Schema::create('provincias', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 100);
+            $table->foreignId('departamento_id')->constrained('departamentos')->onDelete('cascade');
+        });
+
+        Schema::create('distritos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre', 100);
+            $table->foreignId('provincia_id')->constrained('provincias')->onDelete('cascade');
         });
     }
 
@@ -22,6 +34,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ubicaciones');
+        Schema::dropIfExists('distritos');
+        Schema::dropIfExists('provincias');
+        Schema::dropIfExists('departamentos');
     }
 };
