@@ -13,8 +13,8 @@ class Otro extends Model
         "nivel_idioma",
         "office",
         "nivel_office",
-        "elearning",
-        "nivel_elearning",
+        "learning",
+        "nivel_learning",
         "docente_id",
     ];
 }
