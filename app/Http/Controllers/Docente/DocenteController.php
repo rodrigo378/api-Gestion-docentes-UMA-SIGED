@@ -35,10 +35,10 @@ class DocenteController extends Controller
             "telefono_fijo" => "required|string|size:7",
 
             // Contacto de Emergencia
-            "contactoEmergencia.nombre_emergencia" => "required|string",
-            "contactoEmergencia.relacion_emergencia" => "required|string",
-            "contactoEmergencia.telefono_emergencia" => "required|string|size:9",
-            "contactoEmergencia.telefono_emergencia2" => "required|string|size:9",
+            "contactoEmergencia.nombre" => "required|string",
+            "contactoEmergencia.relacion" => "required|string",
+            "contactoEmergencia.telefono_1" => "required|string|size:9",
+            "contactoEmergencia.telefono_2" => "nullable|string|size:9",
 
             // Domicilio del Docente
             "domicilio.departamento_id" => "required|integer",
@@ -55,7 +55,7 @@ class DocenteController extends Controller
             'formacionAcademica.*.universidad' => 'required|string',
             'formacionAcademica.*.especialidad' => 'required|string',
             'formacionAcademica.*.pais' => 'required|string',
-            'formacionAcademica.*.resolucion_sunedo' => 'required|string',
+            'formacionAcademica.*.resolucion_sunedu' => 'required|string',
 
             // Títulos Profesionales
             'titulosProfesionales' => 'nullable|array',
@@ -138,10 +138,10 @@ class DocenteController extends Controller
         $newDocente = Docente::create($docenteData);
 
         ContactoEmergencia::create([
-            "nombre" => $request->contactoEmergencia["nombre_emergencia"],
-            "relacion" => $request->contactoEmergencia["relacion_emergencia"],
-            "telefono_1" => $request->contactoEmergencia["telefono_emergencia"],
-            "telefono_2" => $request->contactoEmergencia["telefono_emergencia2"],
+            "nombre" => $request->contactoEmergencia["nombre"],
+            "relacion" => $request->contactoEmergencia["relacion"],
+            "telefono_1" => $request->contactoEmergencia["telefono_1"],
+            "telefono_2" => $request->contactoEmergencia["telefono_2"],
             "docente_id" => $newDocente->id
         ]);
 
