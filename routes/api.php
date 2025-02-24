@@ -16,9 +16,9 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleC
 
 
 // Ubicaciones
-Route::get("/getDepartamento", [UbicacionController::class, "getDepartamentos"])->name("getDepartamentos");
-Route::get("/getProvincia/{departamento_id}", [UbicacionController::class, "getProvincias"])->name("getProvincias");
-Route::get("/getDistrito/{provincia_id}", [UbicacionController::class, "getDistritos"])->name("getDistritos");
+Route::get("/departamento", [UbicacionController::class, "getDepartamentos"])->name("getDepartamentos");
+Route::get("/provincia/{departamento_id}", [UbicacionController::class, "getProvincias"])->name("getProvincias");
+Route::get("/distrito/{provincia_id}", [UbicacionController::class, "getDistritos"])->name("getDistritos");
 
 
 //Docentes 

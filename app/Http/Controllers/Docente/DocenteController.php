@@ -358,8 +358,7 @@ class DocenteController extends Controller
     public function getDocentes()
     {
         $docentes = Docente::all();
-
-        return response()->json(["docentes" => $docentes], 200);
+        return response()->json($docentes, 200);
     }
 
     public function deleteDocente(Request $request)
