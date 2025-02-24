@@ -243,3 +243,131 @@ class DocenteController extends Controller
         ], 200);
     }
 }
+
+
+
+// {
+//     "nombres": "Juan",
+//     "apellido_paterno": "palomino",
+//     "apellido_materno": "González",
+//     "tipo_identificacion": "DNI",
+//     "numero_identificacion": "12345678",
+//     "fecha_nacimiento": "1990-05-20",
+//     "email": "juan.perez@example.com",
+//     "celular": "987654321",
+//     "telefono_fijo": "1234567",
+  
+//     "contactoEmergencia": {
+//       "nombre": "Ana Pérez",
+//       "relacion": "Hermana",
+//       "telefono_1": "987654322",
+//       "telefono_2": "987654323"
+//     },
+  
+//     "domicilio": {
+//       "departamento_id": 1,
+//       "provincia_id": 1,
+//       "distrito_id": 1,
+//       "direccion": "Av. Ejemplo 123",
+//       "referencia": "Cerca al parque",
+//       "mz": "A",
+//       "lote": "5"
+//     },
+  
+//     "formacionAcademica": [
+//       {
+//         "grado_academico": "Bachiller",
+//         "universidad": "Universidad Nacional",
+//         "especialidad": "Ingeniería de Sistemas",
+//         "pais": "Perú",
+//         "resolucion_sunedu": "Sí"
+//       }
+//     ],
+  
+//     "titulosProfesionales": [
+//       {
+//         "titulo": "Ingeniero de Sistemas",
+//         "universidad": "Universidad Nacional",
+//         "especialidad": "Sistemas"
+//       }
+//     ],
+  
+//     "formacionComplementaria": [
+//       {
+//         "denominacion": "Diplomado en Gestión",
+//         "especialidad": "Gestión de Proyectos",
+//         "institucion": "Escuela de Negocios"
+//       }
+//     ],
+  
+//     "experienciaDocente": [
+//       {
+//         "institucion": "Universidad X",
+//         "curso_dictado": "Programación Avanzada",
+//         "semestre": "2023-1",
+//         "pais": "Perú",
+//         "tipo_experiencia": 1
+//       },
+//       {
+//         "institucion": "Universidad Y",
+//         "curso_dictado": "Programación Avanzada",
+//         "semestre": "2023-1",
+//         "pais": "Perú",
+//         "tipo_experiencia": 2
+//       }
+//     ],
+  
+//     "articuloCientifico": [
+//       {
+//         "titulo_articulo": "Inteligencia Artificial en Educación",
+//         "nombre_revista": "Revista Tech",
+//         "indizado": "Scopus",
+//         "año": "2022",
+//         "enlace": "https://revistatech.com/ai-education"
+//       }
+//     ],
+  
+//     "libros": [
+//       {
+//         "titulo": "Fundamentos de Programación",
+//         "nombre_editorial": "Editorial ABC",
+//         "año": "2021"
+//       }
+//     ],
+  
+//     "proyectoInvestigacion": [
+//       {
+//         "proyecto": "Desarrollo de Software Educativo",
+//         "entidad_financiera": "CONCYTEC",
+//         "año_adjudicacion": "2020"
+//       }
+//     ],
+  
+//     "asesoriaJurado": [
+//       {
+//         "titulo_tesis": "E-learning en Universidades",
+//         "universidad": "Universidad Z",
+//         "nivel_tesis": "Maestría",
+//         "año": "2023",
+//         "tipo": 0
+//       },
+//       {
+//           "titulo_tesis": "E-learning en Universidades",
+//         "universidad": "Universidad Z",
+//         "nivel_tesis": "Maestría",
+//         "año": "2023",
+//         "tipo": 1
+//       }
+//     ],
+  
+//     "otros": [
+//       {
+//         "idioma": "Inglés",
+//         "nivel_idioma": "Avanzado",
+//         "office": "Excel",
+//         "nivel_office": "Intermedio",
+//         "learning": "Moodle",
+//         "nivel_learning": "Básico"
+//       }
+//     ]
+//   }
