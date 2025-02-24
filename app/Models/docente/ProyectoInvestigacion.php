@@ -9,9 +9,9 @@ class ProyectoInvestigacion extends Model
     protected $table = "proyectos_investigacion";
 
     protected $fillable = [
-        "nombre",
-        "entidad_financiadora",
-        "año",
+        "proyecto",
+        "entidad_financiera",
+        "año_adjudicacion",
         "docente_id",
     ];
 }

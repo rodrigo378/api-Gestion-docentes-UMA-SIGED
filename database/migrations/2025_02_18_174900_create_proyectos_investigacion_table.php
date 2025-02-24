@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('proyectos_investigacion', function (Blueprint $table) {
             $table->id();
 
-            $table->string("nombre")->nullable();
-            $table->string("entidad_financiadora")->nullable();
-            $table->string("año")->nullable();
+            $table->string("proyecto")->nullable();
+            $table->string("entidad_financiera")->nullable();
+            $table->string("año_adjudicacion")->nullable();
 
             $table->foreignId("docente_id")->nullable()->constrained("docentes")->onDelete('cascade');
 
