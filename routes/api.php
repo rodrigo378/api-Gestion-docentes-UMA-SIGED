@@ -25,20 +25,20 @@ Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleC
 
 
 
-Route::middleware('auth:sanctum')->group(function () {});
+Route::middleware('auth:sanctum')->group(function () {
 
+    // Ubicaciones (protegidas con middleware auth:sanctum)
+    Route::prefix("ubi")->controller(UbicacionController::class)->group(function () {
+        Route::get("/departamento", "getDepartamentos");
+        Route::get("/provincia/{departamento_id}", "getProvincias");
+        Route::get("/distrito/{provincia_id}", "getDistritos");
+    });
 
-// Ubicaciones (protegidas con middleware auth:sanctum)
-Route::prefix("ubi")->controller(UbicacionController::class)->group(function () {
-    Route::get("/departamento", "getDepartamentos");
-    Route::get("/provincia/{departamento_id}", "getProvincias");
-    Route::get("/distrito/{provincia_id}", "getDistritos");
-});
-
-//Docentes 
-Route::prefix('docente')->controller(DocenteController::class)->group(function () {
-    Route::post("/create", "createDocente")->name("docente.create");
-    Route::get("/{id}", "getDocente")->name("docente.get");
-    Route::get("/", "getDocentes")->name("docente.getAll");
-    Route::delete("/{id}", "deleteDocente")->name("docente.delete");
+    //Docentes 
+    Route::prefix('docente')->controller(DocenteController::class)->group(function () {
+        Route::post("/create", "createDocente")->name("docente.create");
+        Route::get("/{id}", "getDocente")->name("docente.get");
+        Route::get("/", "getDocentes")->name("docente.getAll");
+        Route::delete("/{id}", "deleteDocente")->name("docente.delete");
+    });
 });
