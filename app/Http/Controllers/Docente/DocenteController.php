@@ -52,17 +52,17 @@ class DocenteController extends Controller
 
             // Formación Académica
             'formacionAcademica' => 'nullable|array',
-            'formacionAcademica.*.grado_academico' => 'required|string',
-            'formacionAcademica.*.universidad' => 'required|string',
-            'formacionAcademica.*.especialidad' => 'required|string',
-            'formacionAcademica.*.pais' => 'required|string',
-            'formacionAcademica.*.resolucion_sunedu' => 'required|string',
+            'formacionAcademica.*.grado_academico' => 'nullable|string',
+            'formacionAcademica.*.universidad' => 'nullable|string',
+            'formacionAcademica.*.especialidad' => 'nullable|string',
+            'formacionAcademica.*.pais' => 'nullable|string',
+            'formacionAcademica.*.resolucion_sunedu' => 'nullable|string',
 
             // Títulos Profesionales
             'titulosProfesionales' => 'nullable|array',
-            'titulosProfesionales.*.titulo' => 'required|string',
-            'titulosProfesionales.*.universidad' => 'required|string',
-            'titulosProfesionales.*.especialidad' => 'required|string',
+            'titulosProfesionales.*.titulo' => 'nullable|string',
+            'titulosProfesionales.*.universidad' => 'nullable|string',
+            'titulosProfesionales.*.especialidad' => 'nullable|string',
 
             // Formación Complementaria
             'formacionComplementaria' => 'nullable|array',
@@ -72,11 +72,11 @@ class DocenteController extends Controller
 
             // Experiencia Docente
             'experienciaDocente' => 'nullable|array',
-            'experienciaDocente.*.institucion' => 'required|string',
-            'experienciaDocente.*.curso_dictado' => 'required|string',
-            'experienciaDocente.*.semestre' => 'required|string',
-            'experienciaDocente.*.pais' => 'required|string',
-            'experienciaDocente.*.tipo_experiencia' => 'required|integer',
+            'experienciaDocente.*.institucion' => 'nullable|string',
+            'experienciaDocente.*.curso_dictado' => 'nullable|string',
+            'experienciaDocente.*.semestre' => 'nullable|string',
+            'experienciaDocente.*.pais' => 'nullable|string',
+            'experienciaDocente.*.tipo_experiencia' => 'nullable|integer',
 
             // Artículos Científicos
             'articuloCientifico' => 'nullable|array',
@@ -104,7 +104,7 @@ class DocenteController extends Controller
             'asesoriaJurado.*.universidad' => 'nullable|string',
             'asesoriaJurado.*.nivel' => 'nullable|string',
             'asesoriaJurado.*.año' => 'nullable|string',
-            'asesoriaJurado.*.tipo' => 'required|integer',
+            'asesoriaJurado.*.tipo' => 'nullable|integer',
 
             // Otros Conocimientos
             'otros' => 'nullable|array',
