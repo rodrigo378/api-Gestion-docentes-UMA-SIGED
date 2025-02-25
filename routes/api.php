@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 // Login con google
-Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 
@@ -36,9 +36,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Docentes 
     Route::prefix('docente')->controller(DocenteController::class)->group(function () {
-        Route::post("/create", "createDocente")->name("docente.create");
-        Route::get("/{id}", "getDocente")->name("docente.get");
-        Route::get("/", "getDocentes")->name("docente.getAll");
-        Route::delete("/{id}", "deleteDocente")->name("docente.delete");
+        Route::post("/create", "createDocente");
+        Route::get("/{id}", "getDocente");
+        Route::get("/", "getDocentes");
+        Route::delete("/{id}", "deleteDocente");
     });
 });

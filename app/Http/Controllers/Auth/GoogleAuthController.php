@@ -37,10 +37,12 @@ class GoogleAuthController extends Controller
         // Generar token de Sanctum
         $token = $user->createToken('AuthToken')->plainTextToken;
 
-        return response()->json([
-            'user' => $user,
-            'token' => $token
-        ]);
+        return redirect()->to('http://localhost:4200/login?token=' . $token);
+
+        // return response()->json([
+        //     'user' => $user,
+        //     'token' => $token
+        // ]);
     }
     // public function handleGoogleCallback()
     // {

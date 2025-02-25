@@ -50,7 +50,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6'
+            'password' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -64,9 +64,10 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Las credenciales son incorrectas.']
-            ]);
+            return response()->json([
+                "status" => "401",
+                "message" => "email o password incorrecta"
+            ], 404);
         }
 
         $token = $user->createToken('authToken')->plainTextToken;
