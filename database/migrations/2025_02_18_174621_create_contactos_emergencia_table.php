@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("nombre");
             $table->string("relacion")->comment("Padre/Madre, Hermano/a, Amigo/a, Pareja u Otro");
             $table->char("telefono_1", 9);
-            $table->char("telefono_2", 9);
+            $table->char("telefono_2", 9)->nullable();
 
             $table->foreignId("docente_id")->constrained("docentes")->onDelete('cascade');
 
