@@ -23,6 +23,7 @@ class DocenteController extends Controller
     public function createDocente(Request $request)
     {
         $validator = Validator::make($request->all(), [
+
             // Información Personal Docente
             "nombres" => "required|string",
             "apellido_paterno" => "required|string",
@@ -101,7 +102,7 @@ class DocenteController extends Controller
             'asesoriaJurado' => 'nullable|array',
             'asesoriaJurado.*.titulo_tesis' => 'nullable|string',
             'asesoriaJurado.*.universidad' => 'nullable|string',
-            'asesoriaJurado.*.nivel_tesis' => 'nullable|string',
+            'asesoriaJurado.*.nivel' => 'nullable|string',
             'asesoriaJurado.*.año' => 'nullable|string',
             'asesoriaJurado.*.tipo' => 'required|integer',
 
@@ -256,14 +257,14 @@ class DocenteController extends Controller
 //     "email": "juan.perez@example.com",
 //     "celular": "987654321",
 //     "telefono_fijo": "1234567",
-  
+
 //     "contactoEmergencia": {
 //       "nombre": "Ana Pérez",
 //       "relacion": "Hermana",
 //       "telefono_1": "987654322",
 //       "telefono_2": "987654323"
 //     },
-  
+
 //     "domicilio": {
 //       "departamento_id": 1,
 //       "provincia_id": 1,
@@ -273,7 +274,7 @@ class DocenteController extends Controller
 //       "mz": "A",
 //       "lote": "5"
 //     },
-  
+
 //     "formacionAcademica": [
 //       {
 //         "grado_academico": "Bachiller",
@@ -283,7 +284,7 @@ class DocenteController extends Controller
 //         "resolucion_sunedu": "Sí"
 //       }
 //     ],
-  
+
 //     "titulosProfesionales": [
 //       {
 //         "titulo": "Ingeniero de Sistemas",
@@ -291,7 +292,7 @@ class DocenteController extends Controller
 //         "especialidad": "Sistemas"
 //       }
 //     ],
-  
+
 //     "formacionComplementaria": [
 //       {
 //         "denominacion": "Diplomado en Gestión",
@@ -299,7 +300,7 @@ class DocenteController extends Controller
 //         "institucion": "Escuela de Negocios"
 //       }
 //     ],
-  
+
 //     "experienciaDocente": [
 //       {
 //         "institucion": "Universidad X",
@@ -316,7 +317,7 @@ class DocenteController extends Controller
 //         "tipo_experiencia": 2
 //       }
 //     ],
-  
+
 //     "articuloCientifico": [
 //       {
 //         "titulo_articulo": "Inteligencia Artificial en Educación",
@@ -326,7 +327,7 @@ class DocenteController extends Controller
 //         "enlace": "https://revistatech.com/ai-education"
 //       }
 //     ],
-  
+
 //     "libros": [
 //       {
 //         "titulo": "Fundamentos de Programación",
@@ -334,7 +335,7 @@ class DocenteController extends Controller
 //         "año": "2021"
 //       }
 //     ],
-  
+
 //     "proyectoInvestigacion": [
 //       {
 //         "proyecto": "Desarrollo de Software Educativo",
@@ -342,7 +343,7 @@ class DocenteController extends Controller
 //         "año_adjudicacion": "2020"
 //       }
 //     ],
-  
+
 //     "asesoriaJurado": [
 //       {
 //         "titulo_tesis": "E-learning en Universidades",
@@ -359,7 +360,7 @@ class DocenteController extends Controller
 //         "tipo": 1
 //       }
 //     ],
-  
+
 //     "otros": [
 //       {
 //         "idioma": "Inglés",
@@ -370,4 +371,4 @@ class DocenteController extends Controller
 //         "nivel_learning": "Básico"
 //       }
 //     ]
-//   }
+// }
