@@ -17,17 +17,17 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get("validate-token", [AuthController::class, "validateToken"]);
 });
 
 // Login con google
 Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
-
-
+// (protegidas con middleware auth:sanctum)
 Route::middleware('auth:sanctum')->group(function () {
 
-    // Ubicaciones (protegidas con middleware auth:sanctum)
+    // Ubicaciones 
     Route::prefix("ubi")->controller(UbicacionController::class)->group(function () {
         Route::get("/departamento", "getDepartamentos");
         Route::get("/provincia/{departamento_id}", "getProvincias");

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -83,5 +82,15 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
         return response()->json(['message' => 'Sesión cerrada correctamente']);
+    }
+
+    // Validar Token
+    public function validateToken(Request $request)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'Token válido',
+            'user' => $request->user() // Retorna información del usuario autenticado
+        ]);
     }
 }
