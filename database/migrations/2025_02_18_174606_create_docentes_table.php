@@ -30,6 +30,8 @@ return new class extends Migration
 
             $table->tinyInteger('estado')->default(0)->comment("0 = Pendiente, 1 = Aprobado");
 
+            $table->foreignId("user_id")->unique()->constrained("users")->onDelete("cascade");
+
             $table->timestamps();
         });
     }

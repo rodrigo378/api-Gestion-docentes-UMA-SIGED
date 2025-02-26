@@ -2,6 +2,7 @@
 
 namespace App\Models\docente;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Docente extends Model
@@ -18,8 +19,16 @@ class Docente extends Model
         "email",
         "celular",
         "telefono_fijo",
-        "estado"
+        "estado",
+        "user_id"
     ];
+
+    // Relación con User (Uno a Uno)
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 
     // Relación con Contacto de Emergencia (Uno a Uno)
     public function contactoEmergencia()

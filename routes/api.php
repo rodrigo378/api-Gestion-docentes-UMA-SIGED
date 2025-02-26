@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\Docente\DisponibilidadController;
 use App\Http\Controllers\Docente\DocenteController;
 use App\Http\Controllers\Ubicacion\UbicacionController;
 use Illuminate\Http\Request;
@@ -21,8 +22,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 // Login con google
-Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
-Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
+Route::prefix("auth")->controller(GoogleAuthController::class)->group(function () {
+    Route::get('/google', 'redirectToGoogle');
+    Route::get('/google/callback', 'handleGoogleCallback');
+});
+// Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle']);
+// Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback']);
 
 // (protegidas con middleware auth:sanctum)
 Route::middleware('auth:sanctum')->group(function () {
@@ -36,9 +41,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Docentes 
     Route::prefix('docente')->controller(DocenteController::class)->group(function () {
-        Route::post("/create", "createDocente");
+        Route::get("/user", "getDocenteUser");
         Route::get("/{id}", "getDocente");
         Route::get("/", "getDocentes");
+        Route::post("/create", "createDocente");
         Route::delete("/{id}", "deleteDocente");
+    });
+
+    Route::prefix('disponibilidad')->controller(DisponibilidadController::class)->group(function () {
+        Route::post("", "createDisponibilidad");
+        Route::get("/user", "getDisponibilidadUser");
+        Route::get("/{docente_id}", "getDisponibilidad");
     });
 });

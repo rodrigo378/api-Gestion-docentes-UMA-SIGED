@@ -17,6 +17,7 @@ use App\Models\docente\ProyectoInvestigacion;
 use App\Models\docente\TituloProfesional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class DocenteController extends Controller
 {
@@ -116,6 +117,15 @@ class DocenteController extends Controller
             'otros.*.nivel_learning' => 'nullable|string',
         ]);
 
+        $user = Auth::user();
+
+        if ($user->docente) {
+            return response()->json([
+                "message" => "Este usuario ya tiene un docente creado",
+                "status" => 400
+            ], 400);
+        }
+
         if ($validator->fails()) {
             return response()->json([
                 "message" => "error en el body",
@@ -135,6 +145,8 @@ class DocenteController extends Controller
             "celular",
             "telefono_fijo"
         ]);
+
+        $docenteData["user_id"] = $user->id;
 
         $newDocente = Docente::create($docenteData);
 
@@ -187,6 +199,35 @@ class DocenteController extends Controller
         return response()->json(["docente" => $newDocente], 201);
     }
 
+    public function getDocenteUser()
+    {
+        $user = Auth::user();
+
+        $docente = Docente::with([
+            'contactoEmergencia',
+            'domicilio',
+            'formacionAcademica',
+            'titulosProfesionales',
+            'formacionComplementaria',
+            'experienciaDocente',
+            'articulosCientificos',
+            'libros',
+            'proyectosInvestigacion',
+            'asesoriasJurado',
+            'juradosTesis',
+            'otros'
+        ])->where("user_id", $user->id)->first();
+
+        if (!$docente) {
+            return response()->json([
+                "success" => false,
+                "message" => "Docente no encontrado",
+                "status" => 404
+            ], 404);
+        }
+
+        return response()->json(["docente" => $docente], 200);
+    }
 
     public function getDocente(Request $request)
     {
@@ -209,6 +250,7 @@ class DocenteController extends Controller
 
         if (!$docente) {
             return response()->json([
+                "success" => false,
                 "message" => "Docente no encontrado",
                 "status" => 404
             ], 404);
