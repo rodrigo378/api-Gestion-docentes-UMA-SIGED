@@ -222,11 +222,11 @@ class DocenteController extends Controller
             return response()->json([
                 "success" => false,
                 "message" => "Docente no encontrado",
-                "status" => 404
+                "status" => 401
             ], 404);
         }
 
-        return response()->json(["docente" => $docente], 200);
+        return response()->json($docente, 200);
     }
 
     public function getDocente(Request $request)
