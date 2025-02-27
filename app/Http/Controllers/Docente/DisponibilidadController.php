@@ -24,8 +24,8 @@ class DisponibilidadController extends Controller
         $validator = Validator::make($request->all(), [
             'disponibilidad' => 'required|array',
             'disponibilidad.*.dia' => 'required|string|in:lunes,martes,miercoles,jueves,viernes,sabado,domingo',
-            'disponibilidad.*.hora_inicio' => 'required|date_format:H:i:s',
-            'disponibilidad.*.hora_fin' => 'required|date_format:H:i:s|after:disponibilidad.*.hora_inicio',
+            'disponibilidad.*.hora_inicio' => 'nullable|date_format:H:i:s',
+            'disponibilidad.*.hora_fin' => 'nullable|date_format:H:i:s|after:disponibilidad.*.hora_inicio',
             'disponibilidad.*.modalidad' => 'required|string|in:presencial,virtual'
         ]);
 
