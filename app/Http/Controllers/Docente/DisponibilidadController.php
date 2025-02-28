@@ -94,4 +94,49 @@ class DisponibilidadController extends Controller
             200
         );
     }
+
+    public function updateDisponibilidad(Request $request, $id)
+    {
+        $user = Auth::user();
+
+        if (!$user->docente) {
+            return response()->json([
+                "message" => "El usuario no tiene un docente asignado",
+                "status" => 400
+            ], 400);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'dia' => 'required|string|in:lunes,martes,miercoles,jueves,viernes,sabado,domingo',
+            'hora_inicio' => 'nullable|date_format:H:i:s',
+            'hora_fin' => 'nullable|date_format:H:i:s|after:hora_inicio',
+            'modalidad' => 'required|string|in:presencial,virtual'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "message" => "error en el body",
+                "errors" => $validator->errors(),
+                "status" => 400
+            ], 400);
+        }
+
+        $disponibilidad = Disponibilidad::where("docente_id", $user->docente->id)
+            ->where("id", $id)
+            ->first();
+
+        if (!$disponibilidad) {
+            return response()->json([
+                "message" => "No se encontró disponibilidad con el ID proporcionado",
+                "status" => 404
+            ], 404);
+        }
+
+        $disponibilidad->update($request->only(['dia', 'hora_inicio', 'hora_fin', 'modalidad']));
+
+        return response()->json([
+            "message" => "Disponibilidad actualizada",
+            "status" => 200
+        ], 200);
+    }
 }
