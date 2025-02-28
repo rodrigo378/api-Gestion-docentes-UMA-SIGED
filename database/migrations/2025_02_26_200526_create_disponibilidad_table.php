@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreignId("docente_id")->constrained("docentes")->onDelete("cascade");
 
             $table->enum("dia", ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"]);
-            $table->time("hora_inicio")->nullable(false);
-            $table->time("hora_fin")->nullable(false);
+            $table->time("hora_inicio")->nullable();
+            $table->time("hora_fin")->nullable();
             $table->enum("modalidad", ["presencial", "virtual"]);
 
             $table->timestamps();

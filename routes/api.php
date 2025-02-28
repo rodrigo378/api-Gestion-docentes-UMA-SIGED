@@ -52,5 +52,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post("", "createDisponibilidad");
         Route::get("/user", "getDisponibilidadUser");
         Route::get("/{docente_id}", "getDisponibilidad");
+        Route::put('/{id}', "updateDisponibilidad");
     });
 });
