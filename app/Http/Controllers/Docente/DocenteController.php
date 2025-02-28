@@ -216,6 +216,7 @@ class DocenteController extends Controller
             'asesoriasJurado',
             'juradosTesis',
             'otros'
+
         ])->where("user_id", $user->id)->first();
 
         if (!$docente) {
@@ -226,7 +227,10 @@ class DocenteController extends Controller
             ], 404);
         }
 
-        return response()->json($docente, 200);
+        return response()->json([
+            "docente" => $docente,
+            "estado" => $docente->estado
+        ], 200);
     }
 
     public function getDocente(Request $request)
@@ -261,7 +265,7 @@ class DocenteController extends Controller
 
     public function getDocentes()
     {
-        $docentes = Docente::all();
+        $docentes = Docente::where('estado', 0) -> get();
         return response()->json($docentes, 200);
     }
 
@@ -285,6 +289,46 @@ class DocenteController extends Controller
             "status" => 200
         ], 200);
     }
+
+    public function aprobarDocente(Request $request)
+    {
+    $id = $request->id;
+
+    // Buscar el docente
+    $docente = Docente::find($id);
+
+    if (!$docente) {
+        return response()->json([
+            "message" => "Docente no encontrado",
+            "status" => 404
+        ], 404);
+    }
+
+    // Verificar si ya está aprobado
+    if ($docente->estado == 1) {
+        return response()->json([
+            "message" => "El docente ya está aprobado",
+            "status" => 400
+        ], 400);
+    }
+
+    // Aprobar docente
+    $docente->estado = 1;
+    $docente->save();
+
+    return response()->json([
+        "message" => "Docente aprobado correctamente",
+        "docente" => $docente,
+        "status" => 200
+    ], 200);
+    }
+
+    public function getDocentesAprobados()
+    {
+        $docentes = Docente::where('estado', 1) -> get();
+        return response()->json($docentes, 200);
+    }
+
 }
 
 

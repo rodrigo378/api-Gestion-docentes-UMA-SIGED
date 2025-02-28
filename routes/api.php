@@ -42,11 +42,14 @@ Route::middleware('auth:sanctum')->group(function () {
     //Docentes 
     Route::prefix('docente')->controller(DocenteController::class)->group(function () {
         Route::get("/user", "getDocenteUser");
-        Route::get("/{id}", "getDocente");
+        Route::get("/aprobados", "getDocentesAprobados");
+        Route::get("/{id}", "getDocente"); 
         Route::get("/", "getDocentes");
         Route::post("/create", "createDocente");
         Route::delete("/{id}", "deleteDocente");
+        Route::post("/{id}/aprobar", "aprobarDocente");
     });
+    
 
     Route::prefix('disponibilidad')->controller(DisponibilidadController::class)->group(function () {
         Route::post("", "createDisponibilidad");
