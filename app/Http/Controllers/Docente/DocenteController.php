@@ -323,9 +323,48 @@ class DocenteController extends Controller
     ], 200);
     }
 
+    public function rechazarDocente(Request $request)
+    {
+        $id = $request->id;
+
+        // Buscar el docente
+        $docente = Docente::find($id);
+
+        if (!$docente) {
+            return response()->json([
+                "message" => "Docente no encontrado",
+                "status" => 404
+            ], 404);
+        }
+
+        // Verificar si ya está rechazado
+        if ($docente->estado == 3) {
+            return response()->json([
+                "message" => "El docente ya está rechazado",
+                "status" => 400
+            ], 400);
+        }
+
+        // Rechazar docente
+        $docente->estado = 3;
+        $docente->save();
+
+        return response()->json([
+            "message" => "Docente rechazado correctamente",
+            "docente" => $docente,
+            "status" => 200
+        ], 200);
+    }
+
     public function getDocentesAprobados()
     {
         $docentes = Docente::where('estado', 1) -> get();
+        return response()->json($docentes, 200);
+    }
+
+    public function getDocentesRechazados()
+    {
+        $docentes = Docente::where('estado', 3) -> get();
         return response()->json($docentes, 200);
     }
 

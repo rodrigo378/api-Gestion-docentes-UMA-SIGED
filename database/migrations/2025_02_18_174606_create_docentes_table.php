@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('celular', 9);
             $table->string('telefono_fijo', 7);
 
-            $table->tinyInteger('estado')->default(0)->comment("0 = Pendiente, 1 = Aprobado");
+            $table->tinyInteger('estado')->default(0)->comment("0 = Pendiente, 1 = Aprobado, 3 = Rechazado");
 
             $table->foreignId("user_id")->unique()->constrained("users")->onDelete("cascade");
 

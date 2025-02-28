@@ -43,11 +43,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('docente')->controller(DocenteController::class)->group(function () {
         Route::get("/user", "getDocenteUser");
         Route::get("/aprobados", "getDocentesAprobados");
+        Route::get("/rechazados", "getDocentesRechazados");
         Route::get("/{id}", "getDocente"); 
         Route::get("/", "getDocentes");
         Route::post("/create", "createDocente");
         Route::delete("/{id}", "deleteDocente");
         Route::post("/{id}/aprobar", "aprobarDocente");
+        Route::post("/{id}/rechazar", "rechazarDocente");
     });
     
 
