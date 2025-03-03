@@ -11,25 +11,24 @@ class CursoController extends Controller
     {
         $nombreCurso = $request->query('nombre');
         $categoria = $request->query('categoria'); // Opcional
-
-        // Validar que se envíe el nombre del curso
+    
         if (!$nombreCurso) {
             return response()->json(['error' => 'Debe proporcionar un nombre de curso'], 400);
         }
-
-        // Consulta filtrando por nombre del curso y eliminando duplicados
+    
         $cursos = Curso::select('c_nomcur', 'GENERALES')
-            ->where('c_nomcur', $nombreCurso)
+            ->where('c_nomcur', 'LIKE', "%{$nombreCurso}%")
             ->when($categoria, function ($query) use ($categoria) {
                 return $query->where('GENERALES', $categoria);
             })
             ->distinct()
             ->get();
-
+    
         if ($cursos->isEmpty()) {
             return response()->json(['message' => 'No se encontraron cursos'], 404);
         }
-
+    
         return response()->json($cursos, 200);
     }
+    
 }
