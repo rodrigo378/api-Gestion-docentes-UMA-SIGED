@@ -84,7 +84,7 @@ class DisponibilidadController extends Controller
 
         if ($disponibilidad->isEmpty()) {
             return response()->json([
-                "message" => "No se encontró disponibilidad para este docente",
+                "message" => "No se encontró disponibilidad para este docente ingrese su disponibilidad",
                 "status" => 404
             ], 404);
         }

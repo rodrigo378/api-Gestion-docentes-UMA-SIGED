@@ -2,11 +2,15 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\CursosController;
 use App\Http\Controllers\Docente\DisponibilidadController;
 use App\Http\Controllers\Docente\DocenteController;
 use App\Http\Controllers\Ubicacion\UbicacionController;
+use App\Imports\CursosImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -59,4 +63,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get("/{docente_id}", "getDisponibilidad");
         Route::put('/{id}', "updateDisponibilidad");
     });
+    
+    Route::prefix('cursos')->controller(CursoController::class)->group(function(){
+        Route::get('/buscar_cursos', 'buscarCursos');
+        // Route::get('/crear_curso',  'obtenerDetallesCurso');
+    });
+    
 });
