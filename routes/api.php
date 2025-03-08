@@ -51,7 +51,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get("/{id}", "getDocente"); 
         Route::get("/", "getDocentes");
         Route::post("/create", "createDocente");
+        // Route::post("/update/{id}","updateDocente" );
         Route::delete("/{id}", "deleteDocente");
+        Route::post("/update/user", "updateDocenteUser");
         Route::post("/{id}/aprobar", "aprobarDocente");
         Route::post("/{id}/rechazar", "rechazarDocente");
     });

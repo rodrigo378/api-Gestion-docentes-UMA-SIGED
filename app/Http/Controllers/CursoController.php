@@ -16,7 +16,7 @@ class CursoController extends Controller
             return response()->json(['error' => 'Debe proporcionar un nombre de curso'], 400);
         }
     
-        $cursos = Curso::select('c_nomcur', 'GENERALES')
+        $cursos = Curso::select('id', 'c_nomcur', 'GENERALES')
             ->where('c_nomcur', 'LIKE', "%{$nombreCurso}%")
             ->when($categoria, function ($query) use ($categoria) {
                 return $query->where('GENERALES', $categoria);

@@ -199,6 +199,316 @@ class DocenteController extends Controller
         return response()->json(["docente" => $newDocente], 201);
     }
 
+    // public function updateDocente(Request $request, $id)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         // Información Personal Docente
+    //         "nombres" => "sometimes|required|string",
+    //         "apellido_paterno" => "sometimes|required|string",
+    //         "apellido_materno" => "sometimes|required|string",
+    //         "tipo_identificacion" => "sometimes|required|string",
+    //         "numero_identificacion" => "sometimes|required|string",
+    //         "fecha_nacimiento" => "sometimes|required|date",
+    //         "email" => "sometimes|required|string|email",
+    //         "celular" => "sometimes|required|string|size:9",
+    //         "telefono_fijo" => "sometimes|required|string|size:7",
+
+    //         // Contacto de Emergencia
+    //         "contactoEmergencia.nombre" => "sometimes|required|string",
+    //         "contactoEmergencia.relacion" => "sometimes|required|string",
+    //         "contactoEmergencia.telefono_1" => "sometimes|required|string|size:9",
+    //         "contactoEmergencia.telefono_2" => "sometimes|nullable|string|size:9",
+
+    //         // Domicilio del Docente
+    //         "domicilio.departamento_id" => "sometimes|required|integer",
+    //         "domicilio.provincia_id" => "sometimes|required|integer",
+    //         "domicilio.distrito_id" => "sometimes|required|integer",
+    //         "domicilio.direccion" => "sometimes|required|string",
+    //         "domicilio.referencia" => "sometimes|required|string",
+    //         "domicilio.mz" => "sometimes|required|string",
+    //         "domicilio.lote" => "sometimes|required|string",
+
+    //         // Otras relaciones
+    //         "formacionAcademica" => "nullable|array",
+    //         "titulosProfesionales" => "nullable|array",
+    //         "formacionComplementaria" => "nullable|array",
+    //         "experienciaDocente" => "nullable|array",
+    //         "articuloCientifico" => "nullable|array",
+    //         "libros" => "nullable|array",
+    //         "proyectoInvestigacion" => "nullable|array",
+    //         "asesoriaJurado" => "nullable|array",
+    //         "otros" => "nullable|array"
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return response()->json([
+    //             "message" => "Error en la validación",
+    //             "errors" => $validator->errors(),
+    //             "status" => 400
+    //         ], 400);
+    //     }
+
+    //     $docente = Docente::find($id);
+
+    //     if (!$docente) {
+    //         return response()->json([
+    //             "success" => false,
+    //             "message" => "Docente no encontrado",
+    //             "status" => 404
+    //         ], 404);
+    //     }
+
+    //     // Actualizar datos del docente
+    //     $docente->update($request->only([
+    //         "nombres",
+    //         "apellido_paterno",
+    //         "apellido_materno",
+    //         "tipo_identificacion",
+    //         "numero_identificacion",
+    //         "fecha_nacimiento",
+    //         "email",
+    //         "celular",
+    //         "telefono_fijo"
+    //     ]));
+
+    //     // Actualizar Contacto de Emergencia
+    //     if ($request->has('contactoEmergencia')) {
+    //         $docente->contactoEmergencia()->updateOrCreate(
+    //             ['docente_id' => $docente->id],
+    //             $request->contactoEmergencia
+    //         );
+    //     }
+
+    //     // Actualizar Domicilio
+    //     if ($request->has('domicilio')) {
+    //         $docente->domicilio()->updateOrCreate(
+    //             ['docente_id' => $docente->id],
+    //             $request->domicilio
+    //         );
+    //     }
+
+    //     // Actualizar Formación Académica
+    //     if ($request->has('formacionAcademica')) {
+    //         $docente->formacionAcademica()->delete();
+    //         foreach ($request->formacionAcademica as $data) {
+    //             $docente->formacionAcademica()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Títulos Profesionales
+    //     if ($request->has('titulosProfesionales')) {
+    //         $docente->titulosProfesionales()->delete();
+    //         foreach ($request->titulosProfesionales as $data) {
+    //             $docente->titulosProfesionales()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Formación Complementaria
+    //     if ($request->has('formacionComplementaria')) {
+    //         $docente->formacionComplementaria()->delete();
+    //         foreach ($request->formacionComplementaria as $data) {
+    //             $docente->formacionComplementaria()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Experiencia Docente
+    //     if ($request->has('experienciaDocente')) {
+    //         $docente->experienciaDocente()->delete();
+    //         foreach ($request->experienciaDocente as $data) {
+    //             $docente->experienciaDocente()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Artículos Científicos
+    //     if ($request->has('articuloCientifico')) {
+    //         $docente->articulosCientificos()->delete();
+    //         foreach ($request->articuloCientifico as $data) {
+    //             $docente->articulosCientificos()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Libros
+    //     if ($request->has('libros')) {
+    //         $docente->libros()->delete();
+    //         foreach ($request->libros as $data) {
+    //             $docente->libros()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Proyectos de Investigación
+    //     if ($request->has('proyectoInvestigacion')) {
+    //         $docente->proyectosInvestigacion()->delete();
+    //         foreach ($request->proyectoInvestigacion as $data) {
+    //             $docente->proyectosInvestigacion()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Asesorías y Jurados
+    //     if ($request->has('asesoriaJurado')) {
+    //         $docente->asesoriasJurado()->delete();
+    //         foreach ($request->asesoriaJurado as $data) {
+    //             $docente->asesoriasJurado()->create($data);
+    //         }
+    //     }
+
+    //     // Actualizar Otros Conocimientos
+    //     if ($request->has('otros')) {
+    //         $docente->otros()->delete();
+    //         foreach ($request->otros as $data) {
+    //             $docente->otros()->create($data);
+    //         }
+    //     }
+
+    //     return response()->json([
+    //         "success" => true,
+    //         "message" => "Docente actualizado correctamente",
+    //         "docente" => $docente->load([
+    //             'contactoEmergencia',
+    //             'domicilio',
+    //             'formacionAcademica',
+    //             'titulosProfesionales',
+    //             'formacionComplementaria',
+    //             'experienciaDocente',
+    //             'articulosCientificos',
+    //             'libros',
+    //             'proyectosInvestigacion',
+    //             'asesoriasJurado',
+    //             'otros'
+    //         ])
+    //     ], 200);
+    // }
+
+    public function updateDocenteUser(Request $request)
+    {
+        $user = Auth::user();
+        $docente = Docente::where("user_id", $user->id)->first();
+
+        if (!$docente) {
+            return response()->json([
+                "success" => false,
+                "message" => "Docente no encontrado",
+                "status" => 404
+            ], 404);
+        }
+
+        // Validación de los datos
+        $request->validate([
+            "nombres" => "sometimes|required|string",
+            "apellido_paterno" => "sometimes|required|string",
+            "apellido_materno" => "sometimes|required|string",
+            "email" => "sometimes|required|string|email",
+            "celular" => "sometimes|required|string|size:9",
+            "telefono_fijo" => "sometimes|required|string|size:7",
+
+            // Contacto de Emergencia
+            "contactoEmergencia.nombre" => "sometimes|required|string",
+            "contactoEmergencia.relacion" => "sometimes|required|string",
+            "contactoEmergencia.telefono_1" => "sometimes|required|string|size:9",
+            "contactoEmergencia.telefono_2" => "sometimes|nullable|string|size:9",
+
+            // Domicilio
+            "domicilio.departamento_id" => "sometimes|required|integer",
+            "domicilio.provincia_id" => "sometimes|required|integer",
+            "domicilio.distrito_id" => "sometimes|required|integer",
+            "domicilio.direccion" => "sometimes|required|string",
+            "domicilio.referencia" => "sometimes|required|string",
+            "domicilio.mz" => "sometimes|required|string",
+            "domicilio.lote" => "sometimes|required|string",
+        ]);
+
+        $docente->update($request->only([
+            "nombres", "apellido_paterno", "apellido_materno",
+            "email", "celular", "telefono_fijo"
+        ]));
+
+        if ($request->has('contactoEmergencia')) {
+            $docente->contactoEmergencia()->updateOrCreate(
+                ['docente_id' => $docente->id],
+                $request->contactoEmergencia
+            );
+        }
+
+        if ($request->has('domicilio')) {
+            $docente->domicilio()->updateOrCreate(
+                ['docente_id' => $docente->id],
+                $request->domicilio
+            );
+        }
+
+        if ($request->has('formacionAcademica')) {
+            $docente->formacionAcademica()->delete();
+            foreach ($request->formacionAcademica as $data) {
+                $docente->formacionAcademica()->create($data);
+            }
+        }
+
+        if ($request->has('titulosProfesionales')) {
+            $docente->titulosProfesionales()->delete();
+            foreach ($request->titulosProfesionales as $data) {
+                $docente->titulosProfesionales()->create($data);
+            }
+        }
+
+        // ✅ Actualizar Formación Complementaria
+        if ($request->has('formacionComplementaria')) {
+            $docente->formacionComplementaria()->delete();
+            foreach ($request->formacionComplementaria as $data) {
+                $docente->formacionComplementaria()->create($data);
+            }
+        }
+        if ($request-> has('experienciaDocente')) {
+            $docente->experienciaDocente()->delete();
+            foreach($request -> experienciaDocente as $data) {
+                $docente -> experienciaDocente()->create($data);
+            }
+        }
+
+        if ($request -> has('articuloCientifico')) {
+            $docente -> articuloCientifico() -> delete();
+            foreach ($request -> articuloCientifico as $data) {
+                $docente -> articuloCientifico()->create($data);
+            }
+        }
+
+        if ($request -> has('libros')) {
+            $docente -> libros() -> delete();
+            foreach ($request -> libros as $data) {
+                $docente -> libros()->create($data);
+            }
+        }
+        
+        if ($request -> has('proyectoInvestigacion')) {
+            $docente -> proyectoInvestigacion() -> delete();
+            foreach ($request -> proyectoInvestigacion as $data) {
+                $docente -> proyectoInvestigacion()->create($data);
+            }
+        }
+
+        if ($request -> has('asesoriaJurado')) {
+            $docente -> asesoriaJurado() -> delete();
+            foreach ($request -> asesoriaJurado as $data) {
+                $docente -> asesoriaJurado()->create($data);
+            }
+        }
+
+        if ($request -> has('otros')) {
+            $docente -> otros() -> delete();
+            foreach ($request -> otros as $data) {
+                $docente -> otros()->create($data);
+            }
+        }
+
+        return response()->json([
+            "success" => true,
+            "message" => "Docente actualizado correctamente",
+            "docente" => $docente->load([
+                'contactoEmergencia', 'domicilio', 'formacionAcademica',
+                'titulosProfesionales', 'formacionComplementaria'
+            ])
+        ], 200);
+    }
+
+
     public function getDocenteUser()
     {
         $user = Auth::user();
